@@ -29,13 +29,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(session({
-  secret: process.env.SECRET_SESSION,
-  resave: false,
-  saveUninitialized: true
+    secret: process.env.SECRET_SESSION,
+    resave: false,
+    saveUninitialized: true
 }));
 
 /* Get */
-app.get('/fav', function(req, res) {
+app.get('/fav', function (req, res) {
     let { bgColor = '#ffffff', tColor = '#000000', text = '?', size = 32 } = req.query;
     const allowedSizes = [16, 32, 64, 128, 256, 512];
 
@@ -62,7 +62,22 @@ app.get('/fav', function(req, res) {
 
     // Set text color and font
     ctx.fillStyle = tColor;
-    ctx.font = `${pickedSize + 2}px Arial`;
+
+    // Function to adjust font size to fit the text within the canvas
+    function getFittingFontSize(text, maxWidth, maxHeight) {
+        let fontSize = maxHeight; // Start with the maximum height
+        do {
+            fontSize--; // Reduce font size until it fits
+            ctx.font = `${fontSize}px Arial`;
+        } while (ctx.measureText(text).width > maxWidth && fontSize > 0);
+
+        return fontSize;
+    }
+
+    // Set the font size to fit the text within the canvas
+    const fontSize = getFittingFontSize(text, pickedSize * 0.9, pickedSize * 0.5); // 90% of width, 50% of height
+    ctx.font = `${fontSize}px Arial`;
+
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
 
@@ -79,10 +94,10 @@ app.get('/fav', function(req, res) {
     });
 });
 
-app.get('*', function(req, res) {
+app.get('*', function (req, res) {
     res.send("Error, Page Not Found");
 });
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
-  });
+});
