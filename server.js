@@ -36,9 +36,14 @@ app.use(session({
 
 /* Get */
 app.get('/fav', function(req, res) {
-    let { bgColor = '#ffffff', tColor = '#000000', text = '?' } = req.query;
+    let { bgColor = '#ffffff', tColor = '#000000', text = '?', size = 32 } = req.query;
 
-    // Ensure the color values are properly formatted (prepend '#' if missing)
+    // Ensure the size is valid, default to 32 if invalid
+    let pickedSize = parseInt(size, 10);
+    if (!allowedSizes.includes(pickedSize)) {
+        pickedSize = 32;
+    }
+
     if (!bgColor.startsWith('#')) {
         bgColor = `#${bgColor}`;
     }
@@ -46,22 +51,22 @@ app.get('/fav', function(req, res) {
         tColor = `#${tColor}`;
     }
 
-    // Create a canvas for favicon (32x32 size)
-    const canvas = createCanvas(32, 32);
+    // Create a canvas for favicon
+    const canvas = createCanvas(pickedSize, pickedSize);
     const ctx = canvas.getContext('2d');
 
     // Set background color
     ctx.fillStyle = bgColor;
-    ctx.fillRect(0, 0, 32, 32);
+    ctx.fillRect(0, 0, pickedSize, pickedSize);
 
     // Set text color and font
     ctx.fillStyle = tColor;
-    ctx.font = '20px Arial';
+    ctx.font = `${pickedSize / 2}px Arial`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
 
     // Draw the text (centered)
-    ctx.fillText(text, 16, 16);
+    ctx.fillText(text, pickedSize / 2, pickedSize / 2);
 
     // Send the image as a PNG
     res.setHeader('Content-Type', 'image/png');
