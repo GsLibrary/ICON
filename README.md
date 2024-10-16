@@ -3,9 +3,10 @@
 # Favicons
 > Use favicons if you are wanting this for a favicon icon on a website
 
-**URL** - **[Domain]/fav**
+> To use this version goto /fav and use the query string parameters below!
 
-|Name |Quantity|
-|-----|--------|
-|Apple|3       |
-|Egg  |12      |
+**Query String**|**Explained**|**Whats Valid**
+:-----:|:-----:|:-----:
+text|The characters shown on the icon|Anything
+tColor|The color of the text on the icon|HTML Colors or HEX Code
+bgColor|The background color of the icon|HTML Colors or HEX Code
