@@ -1,4 +1,4 @@
 ### Icon - Quick way to generate custom icons!
 
 # Favicons
-> /Fav
+> Use favicons if you are wanting this for a favicon icon on a website
