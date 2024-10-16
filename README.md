@@ -2,7 +2,9 @@
 
 # Favicons
 > Use favicons if you are wanting this for a favicon icon on a website
+
 **URL** - **[Domain]/fav**
+
 |Name |Quantity|
 |-----|--------|
 |Apple|3       |
