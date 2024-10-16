@@ -37,6 +37,7 @@ app.use(session({
 /* Get */
 app.get('/fav', function(req, res) {
     let { bgColor = '#ffffff', tColor = '#000000', text = '?', size = 32 } = req.query;
+    const allowedSizes = [16, 32, 64, 128, 256, 512];
 
     // Ensure the size is valid, default to 32 if invalid
     let pickedSize = parseInt(size, 10);
@@ -61,7 +62,7 @@ app.get('/fav', function(req, res) {
 
     // Set text color and font
     ctx.fillStyle = tColor;
-    ctx.font = `${pickedSize / 2}px Arial`;
+    ctx.font = `${pickedSize + 2}px Arial`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
 
