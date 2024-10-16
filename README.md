@@ -4,8 +4,8 @@
 > Use favicons if you are wanting this for a favicon icon on a website.
 > To use this version goto **/fav** and use the query string parameters below!
 
-**Query String**|**Explained**|**Whats Valid**
-:-----:|:-----:|:-----:
-text|The characters shown on the icon|Anything
-tColor|The color of the text on the icon|HTML Colors or HEX Code
-bgColor|The background color of the icon|HTML Colors or HEX Code
+**Query String**|**Explained**|**Whats Valid**|**Example**
+:-----:|:-----:|:-----:|:-----:
+text|The characters shown on the icon|Anything|WIN
+tColor|The color of the text on the icon|HTML Colors or HEX Code|red
+bgColor|The background color of the icon|HTML Colors or HEX Code|00ff00
